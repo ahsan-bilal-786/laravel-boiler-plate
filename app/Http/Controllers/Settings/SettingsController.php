@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\Attachment;
 use DB;
 use Hash;
 
@@ -20,7 +21,7 @@ class SettingsController extends Controller
      */
     public function edit()
     {
-        $settings = Setting::all()->pluck('value', 'key')->toArray();
+        $settings = Setting::getSettings();
         return view('settings.edit',compact('settings'));
     }
 
@@ -33,35 +34,14 @@ class SettingsController extends Controller
      */
     public function update(Request $request)
     {
-        $validator = \Validator::make([], []);
-        $data = [];
         $input = $request->all();
-        if(isset($input['order_id_start'])){
-            
-            $data[] = [
-                'key' => 'order_id_start',
-                'value' => $input['order_id_start'],
-            ];
-
-            if((int)$input['order_id_start']==0){
-                $validator->getMessageBag()->add('order_id_start', 'Order Id should be a numnber.');
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            $data[] = ['key' => 'tel_1', 'value' => $input['tel_1']];
-            $data[] = ['key' => 'tel_2', 'value' => $input['tel_2']];
-            $data[] = ['key' => 'fax_1', 'value' => $input['fax_1']];
-            $data[] = ['key' => 'fax_2', 'value' => $input['fax_2']];
-            $data[] = ['key' => 'address', 'value' => $input['address']];
-            
-        }else{
-            $validator->getMessageBag()->add('order_id_start', 'Order Id should be a numnber.');
-            return redirect()->back()->withErrors($validator)->withInput();
+        if ($request->hasFile('logo')) {
+            ini_set('memory_limit', '-1');
+            $file = $request->file('logo');
+            $attachment = Attachment::uploadProfilePhoto($file);
+            $input['logo'] = (isset($attachment->id) ? $attachment->id : null);
         }
-        
-        Setting::truncate();
-        Setting::insert($data);
-
+        Setting::saveSettings($input);
         return redirect()->route('generalSettings')
                         ->with('success','Settings have updated successfully');
     }

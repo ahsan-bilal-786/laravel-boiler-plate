@@ -17,9 +17,14 @@
             {!! Form::text('fax_2', (isset($settings['fax_2']) ? $settings['fax_2'] : ''), array('placeholder' => 'Fax # 2','class' => 'form-control')) !!}
         </div>
         <div class="form-group">
-            <label>Order ID Start From</label>
-            {!! Form::text('order_id_start', (isset($settings['order_id_start']) ? $settings['order_id_start'] : ''), array('placeholder' => 'Enter Order ID','class' => 'form-control')) !!}
+            <label>Logo</label>
+            <input name="logo" type="file" class="form-control" value="Upload"/>
+            @if(isset($settings['logo']))
+            <img src="{{ $settings['logo'] }}"  alt="user photo" width="100px"/>
+            @endif
         </div>
+
+
     </div>
     
     <div class="col-lg-6">

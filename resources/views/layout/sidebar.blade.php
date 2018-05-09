@@ -48,7 +48,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('dashboard') }}">
-                    <img src="{{ asset('img/logo.png') }}" />
+                    <img src="{{ $site_info['logo'] or '' }}"  height="40" />
+                    
                 </a>
                 <a href="javascript:void(0);" class="toggle-full-width bs-tooltip"  data-placement="bottom" data-original-title="Toggle Screen Size"><i class="fa fa-desktop fa-fw"></i> </a>
             </div>
@@ -61,7 +62,7 @@
         </nav>
 
       <div id="page-wrapper">
-
+      
       @if ($message = Session::get('success'))
 				<div class="alert alert-success">
 					<p>{{ $message }}</p>
