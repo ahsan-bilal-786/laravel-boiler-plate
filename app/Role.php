@@ -9,8 +9,8 @@ class Role extends EntrustRole{
     public static function getByRoleName($name){
         return self::where('name', $name)->first();
     }
-    public static function getDriversRole(){
-        return self::where('name', 'drivers')->first();
+    public static function getEditorRole(){
+        return self::where('name', 'editor')->first();
     }
     public static function getStaffRoles(){
         return self::whereNotIn('name', ['admin', 'drivers'])->get();

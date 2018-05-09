@@ -85,7 +85,7 @@ class User extends Authenticatable
     }
 
     public static function getEditorStaff(){
-        $role = Role::getDriversRole();
+        $role = Role::getEditorRole();
         $users = self::join('role_user', 'users.id', '=', 'role_user.user_id')
         ->where('role_id',$role->id)
         ->orderBy('name', 'desc')->get();

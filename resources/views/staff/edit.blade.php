@@ -15,8 +15,8 @@
 
 <div class="clearfix"></div>
 
-{!! Form::model($user, ['method' => 'PUT','route' => ['staffUpdate', $role->name, $user->id], 'files'=> true]) !!}
-@include('staff/partials/basicInfo', compact($role))
+{!! Form::model($user, ['method' => 'PUT','route' => ['staff.update', $user->id], 'files'=> true]) !!}
+@include('staff/partials/basicInfo')
 {!! Form::close() !!}
 
 

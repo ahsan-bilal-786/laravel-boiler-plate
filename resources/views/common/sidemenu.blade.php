@@ -15,6 +15,18 @@
                     </li>
                 </ul>
             </li>
+            @if(\Auth::user()->hasRole(['admin']))
+            <li>
+                <a href="#"><i class="fa fa-truck fa-fw"></i> Staff<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{  route('staff.index') }}">All Staff</a>
+                    </li>
+                    <li>
+                        <a href="{{  route('staff.create') }}">Add New</a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <a href="#"><i class="fa fa-user fa-fw"></i> System Settings<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -23,7 +35,7 @@
                     </li>
                 </ul>
             </li>
-            
+            @endif
 			<li>
                 <a href="{{ route('staffAccountSettings') }}"><i class="fa fa-gears fa-fw"></i> Settings</a>
             </li>

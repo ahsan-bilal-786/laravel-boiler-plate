@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                {{ $role->display_name }} Staff
+                Staff
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -32,13 +32,13 @@
                     </thead>
                     <tbody>
                         @foreach($users as $user)
-                        <tr class="gradeX" data-route="{{ route('staffEdit', array('role_type' => $role->name, 'id' => $user->id)) }}">
+                        <tr class="gradeX" data-route="{{ route('staff.edit', array('id' => $user->id)) }}">
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->contact_no }}</td>
                             <td>{{ $user->address }}</td>
                             <td>
-                                <a href="javascript:void(0);" data-route="{{ route('staffDelete', array('role_type' => $role->name, 'id' => $user->id)) }}" class="deleteRecord btn btn-danger btn-circle" >
+                                <a href="javascript:void(0);" data-route="{{ route('staff.destroy', array('id' => $user->id)) }}" class="deleteRecord btn btn-danger btn-circle" >
                                 <i class="fa fa-close bs-tooltip" title="Delete"></i> </a>
                                 </a>
                             </td>

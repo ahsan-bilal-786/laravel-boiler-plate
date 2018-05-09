@@ -23,15 +23,8 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        if(\Auth::user()->hasRole('admin')){
-            return $this->adminDashboard();
-        }
-    }
-
-    public function adminDashboard(){
-        $stats = [];
+    {
+        $stats = [];   
         return view('admin/dashboard', compact('stats'));
     }
-    
 }

@@ -12,15 +12,9 @@ use Hash;
 
 class StaffController extends Controller
 {
-    public function index($role_name){
-        
-        $role = Role::getByRoleName($role_name);
-        switch($role->name){
-            case 'editor':
-                $users = User::getEditorStaff();
-            break;
-        }
-        return view('staff.index', compact('users', 'role'));
+    public function index(){
+        $users = User::getEditorStaff();
+        return view('staff.index', compact('users'));
     }
     
      /**
@@ -28,10 +22,9 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($role_name)
+    public function create()
     {   
-        $role = Role::getByRoleName($role_name);
-        return view('staff.create', compact('role'));
+        return view('staff.create');
     }
 
     /**
@@ -40,9 +33,9 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $role_name)
+    public function store(Request $request)
     {
-        $role = Role::getByRoleName($role_name);
+        $role = Role::getByRoleName('editor');
         
         $rules = User::getValidationRules($role->name);
         
@@ -50,11 +43,6 @@ class StaffController extends Controller
         
         $input = $request->all();
 
-        if(in_array($role->name, array('drivers'))){
-            
-            $input['password'] = Hash::make($input['password']);
-        }
-        
         if ($request->hasFile('photo')) {
             ini_set('memory_limit', '-1');
             $file = $request->file('photo');
@@ -66,7 +54,7 @@ class StaffController extends Controller
         
         $user->attachRole($role->id);
         
-        return redirect()->route('staffEdit', array('role_name' => $role->name, 'id' => $user->id))
+        return redirect()->route('staff.edit', array('id' => $user->id))
         ->with('success', $role->display_name.' staff has created successfully.');
     }
 
@@ -77,13 +65,11 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($role_name, $id)
+    public function edit($id)
     {
         
         $user = User::find($id);
-        $role = Role::getByRoleName($role_name);
-        
-        return view('staff.edit',compact('user', 'role'));
+        return view('staff.edit',compact('user'));
     }
 
     /**
@@ -93,9 +79,9 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $role_name, $id)
+    public function update(Request $request, $id)
     {
-        $role = Role::getByRoleName($role_name);
+        $role = Role::getByRoleName('editor');
         
         $rules = User::getValidationRules($role->name, array('id' => $id));
         $this->validate($request, $rules);
@@ -117,7 +103,7 @@ class StaffController extends Controller
         $user = User::find($id);
         $user->update($input);
         
-        return redirect()->route('staffEdit', array('role_name' => $role->name, 'id' => $user->id))
+        return redirect()->route('staff.edit', array('id' => $user->id))
         ->with('success', $role->display_name.' staff has updated successfully.');
     }
 
@@ -159,10 +145,11 @@ class StaffController extends Controller
         ->with('success','Profile has updated successfully.');
     }
 
-    public function delete($role_name, $id){
-        $role = Role::getByRoleName($role_name);
+    public function destroy(Request $request, $id){
+        $role = Role::getByRoleName('editor');
         User::find($id)->delete();
-        return redirect()->route('staffList', array('role_name' => $role_name))
-        ->with('success',  $role->display_name.'Staff has deleted successfully.');
+        $request->session()->flash('success', 'Profile has successfully deleted.');
+        return response()
+            ->json(['success' => true]);
     }
 }

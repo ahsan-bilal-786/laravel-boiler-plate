@@ -13,9 +13,9 @@
 
 @section('content')
 
-{!! Form::open(array('route' => array('storeStaff',  $role->name),'method'=>'POST', 'files'=> true)) !!}
+{!! Form::open(array('route' => array('staff.store'),'method'=>'POST', 'files'=> true)) !!}
 
-    @include('staff/partials/basicInfo', compact('role'))
+    @include('staff/partials/basicInfo')
 
 {!! Form::close() !!}
 

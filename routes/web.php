@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::resource('users','UserController');
 	Route::resource('posts','Post\PostController');
+	Route::resource('staff','Staff\StaffController');
 	
 	
 	Route::get('general_settings', 'Settings\SettingsController@edit')->name('generalSettings');

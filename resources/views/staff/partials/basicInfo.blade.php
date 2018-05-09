@@ -66,9 +66,6 @@
                     </div>
                     <!-- /.col-lg-6 (nested) -->
                     <div class="col-lg-12 text-center">
-                    @if(isset($role))
-                        {!! Form::hidden('role_name', $role->name) !!}
-                    @endif
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>    
                 </div>
