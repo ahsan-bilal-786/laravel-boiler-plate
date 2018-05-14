@@ -19,17 +19,10 @@ class RoleTableSeeder extends Seeder
         $admin->description  = 'User is allowed to manage and edit other users'; // optional
         $admin->save();
 
-        $doctor = new Role();
-        $doctor->name         = 'doctor';
-        $doctor->display_name = 'Doctor'; // optional
-        $doctor->description  = 'User is the doctor of a given project'; // optional
-        $doctor->save();
-
-        $reception = new Role();
-        $reception->name         = 'reception';
-        $reception->display_name = 'reception'; // optional
-        $reception->description  = 'User is the reception of a given project'; // optional
-        $reception->save();
-
+        $editor = new Role();
+        $editor->name         = 'editor';
+        $editor->display_name = 'Editor'; // optional
+        $editor->description  = 'Editor Group'; // optional
+        $editor->save();
     }
 }

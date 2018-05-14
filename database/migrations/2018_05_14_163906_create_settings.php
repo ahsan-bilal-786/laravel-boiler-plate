@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddReminderToOrderStatuses extends Migration
+class CreateSettinges extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddReminderToOrderStatuses extends Migration
      */
     public function up()
     {
-       Schema::table('order_statuses', function($table) {
-        $table->integer('reminder');
-    });
+        //
+        // Schema::create('settings', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('key');
+        //     $table->text('value');
+        // });
     }
 
     /**
@@ -25,8 +28,7 @@ class AddReminderToOrderStatuses extends Migration
      */
     public function down()
     {
-        Schema::table('order_statuses', function($table) {
-        $table->dropColumn('reminder');
-    });
+        //
+        // Schema::dropIfExists('settings');
     }
 }

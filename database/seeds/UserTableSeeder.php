@@ -12,10 +12,17 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        $vader = DB::table('users')->insert([
+        $admin = DB::table('users')->insert([
 				'name'   => 'admin',
 				'email'      => 'admin@admin.com',
 				'password'   => Hash::make('admin'),
+				'created_at' => new DateTime(),
+				'updated_at' => new DateTime()
+			]);
+        $editor = DB::table('users')->insert([
+				'name'   => 'editor',
+				'email'      => 'user@editor.com',
+				'password'   => Hash::make('editor'),
 				'created_at' => new DateTime(),
 				'updated_at' => new DateTime()
 			]);
