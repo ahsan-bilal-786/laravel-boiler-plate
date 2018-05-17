@@ -18,8 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
-        $site_info=Setting::getSettings();
-        View::share('site_info', $site_info);
+        
     }
 
     /**

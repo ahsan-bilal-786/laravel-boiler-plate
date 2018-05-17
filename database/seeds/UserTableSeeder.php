@@ -11,7 +11,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+		//
         $admin = DB::table('users')->insert([
 				'name'   => 'admin',
 				'email'      => 'admin@admin.com',
@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
 				'created_at' => new DateTime(),
 				'updated_at' => new DateTime()
 			]);
-        $editor = DB::table('users')->insert([
+		$editor = DB::table('users')->insert([
 				'name'   => 'editor',
 				'email'      => 'user@editor.com',
 				'password'   => Hash::make('editor'),
