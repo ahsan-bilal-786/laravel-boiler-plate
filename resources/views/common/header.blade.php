@@ -6,7 +6,9 @@
             @endif
             
            {{ \Auth::user()->name }}
+           @if(isset(\Auth::user()->roles[0]->name))
            <small>({{ ucfirst(\Auth::user()->roles[0]->name) }})</small>
+           @endif
       </a>
   </li>
 
