@@ -5,7 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
-    <!-- Bootstrap Core CSS -->
+  <?php /*  
+  <!-- Bootstrap Core CSS -->
     <link href="{{ asset('sbadmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -17,11 +18,12 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('sbadmin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('select2/css/select2.min.css') }}" rel="stylesheet">
-    
+    */ ?>
+    <link href="{{ url(mix('css/all.css')) }}" rel="stylesheet" type="text/css">
+
     @yield('css_files')
 
-    <link href="{{ asset('css/custom.css') }}<?php echo "?".rand(11000, 9999); ?>" rel="stylesheet" type="text/css">
-
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -80,7 +82,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+<?php /*
     <!-- jQuery -->
     <script src="{{ asset('sbadmin/vendor/jquery/jquery.min.js') }}"></script>
 
@@ -96,11 +98,13 @@
     <script src="{{ asset('select2/js/select2.full.min.js') }}"></script>
     
     <script src="{{ asset('js/moment.js') }}"></script>
-    
+    */ ?>
+    <script src="<?php echo url(mix('js/all.js')).'?'.rand(11000, 9999); ?>"></script>
     @yield('js_files')
-    
+    <?php /*
     <script src="<?php echo asset('js/custom.js').'?'.rand(11000, 9999); ?>"></script>
-
+     */ ?>   
+     
     @yield('custom_js')
     
 </body>
