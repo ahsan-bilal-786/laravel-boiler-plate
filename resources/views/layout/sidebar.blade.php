@@ -19,8 +19,8 @@
     <link href="{{ asset('sbadmin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('select2/css/select2.min.css') }}" rel="stylesheet">
     */ ?>
-    <link href="{{ url(mix('css/all.css')) }}" rel="stylesheet" type="text/css">
-
+    <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet" type="text/css">
+    
     @yield('css_files')
 
     

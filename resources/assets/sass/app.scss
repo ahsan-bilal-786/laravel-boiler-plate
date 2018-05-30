@@ -1,4 +1,3 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
@@ -7,3 +6,12 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import '../../../node_modules/font-awesome/scss/font-awesome';
+
+
+
+@import '../../../public/sbadmin/vendor/metisMenu/metisMenu';
+@import '../../../public/sbadmin/dist/css/sb-admin-2';
+@import '../../../public/select2/css/select2';
+@import '../../../public/css/custom';
