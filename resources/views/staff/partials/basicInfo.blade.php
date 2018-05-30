@@ -56,7 +56,7 @@
                             <label>Confirm Password</label>
                             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
                         </div>
-                        @if ((\Auth::user()->hasRole('admin') && (isset($user) && $user->roles[0]->name !== 'admin')) || !isset($user))
+                        @if ((\Auth::user()->hasRole('admin') && (isset($user->roles[0]->name) && $user->roles[0]->name !== 'admin')) || !isset($user))
                         <div class="form-group">
                             <label>Account Status</label>
                             {!! Form::select('is_active', array(1 => 'Active', 0 => 'Blocked'),null, array('class' => 'form-control')) !!}
